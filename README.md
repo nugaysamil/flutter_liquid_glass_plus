@@ -96,6 +96,9 @@ Use `useOwnLayer: true` when you want:
 Here's a complete example showing how to create a standalone container with custom glass settings:
 
 ```dart
+
+https://github.com/user-attachments/assets/d63afa64-d3d2-410a-938b-c6c4b885987d
+
 LiquidGlassContainer(
   // Enable standalone mode - creates its own glass layer
   useOwnLayer: true,
