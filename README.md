@@ -6,7 +6,7 @@ A beautiful Flutter package for creating stunning liquid glass morphism UI effec
 
 - **Beautiful Glass Effects** - Create stunning liquid glass morphism UI components
 - **High Performance** - Optimized rendering with quality presets
-- **Flexible Components** - `LGCard` and `LGContainer` for all your needs
+- **Flexible Components** - Comprehensive set of glass widgets for all your needs
 - **Customizable** - Fine-tune blur, thickness, and visual properties
 - **Cross-Platform** - Works seamlessly on iOS, Android, Web, and Desktop
 - **Grouped or Standalone** - Use shared glass layers or independent effects
@@ -25,6 +25,48 @@ Then run:
 ```bash
 flutter pub get
 ```
+
+## Available Widgets
+
+### Buttons & Controls
+- `LGSwitch` - iOS-style toggle switch with liquid glass effect
+- `LGSlider` - Draggable slider with jelly physics and glass thumb
+- `LGButton` - Glass morphism button with customizable styles
+- `LGIconButton` - Icon button with glass effect
+- `LGChip` - Glass chip widget
+- `LGButtonGroup` - Grouped button container
+- `LGPanel` - Glass panel container
+
+### Surfaces
+- `LGAppBar` - Glass navigation bar for app headers
+- `LGBottomBar` - Bottom navigation bar with glass effect and search support
+- `LGBottomBarTab` - Tab configuration for bottom bar
+- `LGBottomBarExtraButton` - Extra button for bottom bar
+- `LGTabBar` - Horizontal tab bar with glass effect
+- `LGTab` - Tab configuration for tab bar
+- `LGSideBar` - Side navigation bar
+- `LGSideBarItem` - Side bar item configuration
+- `LGToolBar` - Toolbar with glass effect
+
+### Overlays
+- `LGSheet` - Bottom sheet with glass effect and drag indicator
+- `LGDialog` - Modal dialog with glass morphism
+- `LGDialogAction` - Dialog action button
+- `LGMenu` - Context menu with glass effect
+- `LGMenuItem` - Menu item configuration
+
+### Entry & Forms
+- `LGTextField` - Text input field with glass effect
+- `LGTextArea` - Multi-line text area
+- `LGFormField` - Form field wrapper with label and error text
+- `LGSearchBar` - Search bar with glass styling
+- `LGPicker` - Picker widget with glass effect
+- `LGPasswordField` - Password input field
+
+### Components
+- `LGCard` - Glass card widget with iOS-style defaults
+- `LGContainer` - Flexible container with glass effects
+- `LGIndicator` - Glass indicator for selections
 
 ## Quick Start
 
@@ -45,42 +87,125 @@ LiquidGlassLayer(
 )
 ```
 
-### Using LGCard
+## Example Usage
 
-Create beautiful glass cards with default styling:
+### LGAppBar
+
+Use `LGAppBar` for navigation bars at the top of your screens. Perfect for app headers with title, leading actions, and trailing buttons.
 
 ```dart
-LGCard(
-  quality: LGQuality.premium,
-  margin: const EdgeInsets.only(bottom: 16),
-  child: ListTile(
-    leading: Icon(Icons.star, color: Colors.white),
-    title: Text('Glass Card', style: TextStyle(color: Colors.white)),
-    subtitle: Text('Beautiful glass effect', style: TextStyle(color: Colors.white70)),
+LGAppBar(
+  title: Text('Home'),
+  leading: IconButton(
+    icon: Icon(Icons.menu),
+    onPressed: () {},
+  ),
+  actions: [
+    IconButton(
+      icon: Icon(Icons.search),
+      onPressed: () {},
+    ),
+  ],
+  useOwnLayer: true,
+  settings: const LiquidGlassSettings(
+    thickness: 40,
+    blur: 20,
   ),
 )
 ```
 
-### Using LGContainer
+**Use Cases:**
+- App navigation headers
+- Screen titles with action buttons
+- Settings screens
+- Profile pages
 
-Create flexible glass containers with custom dimensions:
+### LGBottomBar
+
+Create beautiful bottom navigation bars with glass effect. Supports search functionality, tab navigation, and customizable glass settings.
 
 ```dart
-LGContainer(
-  width: double.infinity,
-  height: 150,
-  padding: const EdgeInsets.all(16),
-  alignment: Alignment.center,
-  child: Text(
-    'Custom Container',
-    style: TextStyle(color: Colors.white),
+LGBottomBar(
+  tabs: [
+    LGBottomBarTab(label: 'Home', icon: Icon(Icons.home)),
+    LGBottomBarTab(label: 'Search', icon: Icon(Icons.search)),
+    LGBottomBarTab(label: 'Profile', icon: Icon(Icons.person)),
+  ],
+  selectedIndex: index,
+  onTabSelected: (index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  },
+  isSearch: true,
+  glassSettings: const LiquidGlassSettings(
+    thickness: 40,
+    blur: 15,
   ),
 )
 ```
+
+**Use Cases:**
+- Main app navigation
+- Tab-based interfaces
+- Apps with search functionality
+- Multi-section applications
+
+### LGSwitch
+
+iOS-style toggle switch with liquid glass effect. Perfect for settings and preferences.
+
+```dart
+LGSwitch(
+  value: _isEnabled,
+  onChanged: (value) {
+    setState(() {
+      _isEnabled = value;
+    });
+  },
+)
+```
+
+**Use Cases:**
+- Settings toggles
+- Feature enable/disable switches
+- Preference panels
+- Configuration screens
+
+### LGSheet
+
+Bottom sheet with glass effect, perfect for menus and action sheets.
+
+```dart
+LGSheet.show(
+  context: context,
+  builder: (context) => Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      ListTile(
+        leading: Icon(Icons.home),
+        title: Text('Home'),
+        onTap: () => Navigator.pop(context),
+      ),
+      // More items...
+    ],
+  ),
+  settings: const LiquidGlassSettings(
+    thickness: 40,
+    blur: 20,
+  ),
+)
+```
+
+**Use Cases:**
+- Action menus
+- Bottom sheets
+- Selection dialogs
+- Quick actions
 
 ## Standalone Container with Custom Layer
 
-One of the most powerful features of `LGContainer` is the ability to create **standalone containers** with their own independent glass layer. This is perfect when you want a container to have unique glass effect settings that differ from the parent layer.
+One of the most powerful features is the ability to create **standalone containers** with their own independent glass layer. This is perfect when you want a container to have unique glass effect settings that differ from the parent layer.
 
 ### When to Use Standalone Containers
 
@@ -92,12 +217,7 @@ Use `useOwnLayer: true` when you want:
 
 ### Example: Standalone Container
 
-https://github.com/user-attachments/assets/d5275be6-8ad1-4681-9502-bc4008b41d85
-
-Here's a complete example showing how to create a standalone container with custom glass settings:
-
 ```dart
-
 LGContainer(
   // Enable standalone mode - creates its own glass layer
   useOwnLayer: true,
@@ -124,12 +244,6 @@ LGContainer(
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
-      ),
-      SizedBox(height: 4),
-      Text(
-        'Uses its own layer with custom settings',
-        style: TextStyle(color: Colors.white70),
-        textAlign: TextAlign.center,
       ),
     ],
   ),
@@ -196,36 +310,6 @@ LGCard(
   child: YourContent(),
 )
 ```
-
-## API Reference
-
-### LGContainer
-
-A flexible container widget with configurable glass effects.
-
-**Properties:**
-- `child` - Content widget displayed inside the container
-- `width` / `height` - Container dimensions
-- `padding` - Internal padding
-- `margin` - External margin
-- `shape` - Container shape (default: rounded superellipse)
-- `settings` - Glass effect settings (only used when `useOwnLayer` is true)
-- `useOwnLayer` - Whether to create its own layer or use grouped glass
-- `quality` - Rendering quality preset
-- `alignment` - Child alignment within container
-
-### LGCard
-
-A card widget with iOS-style design defaults.
-
-**Properties:**
-- `child` - Content widget
-- `padding` - Internal padding (default: 16px)
-- `margin` - External margin
-- `shape` - Card shape (default: rounded superellipse with 12px radius)
-- `settings` - Glass effect settings (only used when `useOwnLayer` is true)
-- `useOwnLayer` - Whether to create its own layer
-- `quality` - Rendering quality preset
 
 ## Use Cases
 
