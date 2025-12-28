@@ -1,4 +1,4 @@
-# flutter_liquid_glass
+# flutter_liquid_glass_plus
 
 A beautiful Flutter package for creating stunning liquid glass morphism UI effects. Transform your Flutter apps with elegant, modern glassmorphism designs that blur the line between UI and reality.
 
@@ -17,7 +17,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_liquid_glass: ^0.0.1
+  flutter_liquid_glass_plus: ^0.0.1
 ```
 
 Then run:
@@ -75,7 +75,7 @@ flutter pub get
 Wrap your app with a `LiquidGlassLayer` to enable glass effects:
 
 ```dart
-import 'package:flutter_liquid_glass/flutter_liquid_glass.dart';
+import 'package:flutter_liquid_glass_plus/flutter_liquid_glass.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 
 LiquidGlassLayer(
@@ -89,27 +89,68 @@ LiquidGlassLayer(
 
 ## Example Usage
 
+### LGBottomBar
+
+Create beautiful bottom navigation bars with glass effect. Supports search functionality, tab navigation, and customizable glass settings.
+
+**Important:** Don't forget to use `extendBody: true` when using `LGBottomBar` in your `Scaffold`.
+
+```dart
+Scaffold(
+  extendBody: true,
+  bottomNavigationBar: LGBottomBar(
+    tabs: [
+      LGBottomBarTab(label: 'Home', icon: Icon(Icons.home)),
+      LGBottomBarTab(label: 'Search', icon: Icon(Icons.search)),
+      LGBottomBarTab(label: 'Profile', icon: Icon(Icons.person)),
+    ],
+    selectedIndex: index,
+    onTabSelected: (index) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    },
+    isSearch: true,
+    glassSettings: const LiquidGlassSettings(
+      thickness: 40,
+      blur: 15,
+    ),
+  ),
+)
+
+```
+
+**Use Cases:**
+- Main app navigation
+- Tab-based interfaces
+- Apps with search functionality
+- Multi-section applications
+
 ### LGAppBar
 
 Use `LGAppBar` for navigation bars at the top of your screens. Perfect for app headers with title, leading actions, and trailing buttons.
 
+**Important:** Don't forget to use `appBar` property when using `LGAppBar` in your `Scaffold`.
+
 ```dart
-LGAppBar(
-  title: Text('Home'),
-  leading: IconButton(
-    icon: Icon(Icons.menu),
-    onPressed: () {},
-  ),
-  actions: [
-    IconButton(
-      icon: Icon(Icons.search),
+Scaffold(
+  appBar: LGAppBar(
+    title: Text('Home'),
+    leading: IconButton(
+      icon: Icon(Icons.menu),
       onPressed: () {},
     ),
-  ],
-  useOwnLayer: true,
-  settings: const LiquidGlassSettings(
-    thickness: 40,
-    blur: 20,
+    actions: [
+      IconButton(
+        icon: Icon(Icons.search),
+        onPressed: () {},
+      ),
+    ],
+    useOwnLayer: true,
+    settings: const LiquidGlassSettings(
+      thickness: 40,
+      blur: 20,
+    ),
   ),
 )
 ```
@@ -119,37 +160,6 @@ LGAppBar(
 - Screen titles with action buttons
 - Settings screens
 - Profile pages
-
-### LGBottomBar
-
-Create beautiful bottom navigation bars with glass effect. Supports search functionality, tab navigation, and customizable glass settings.
-
-```dart
-LGBottomBar(
-  tabs: [
-    LGBottomBarTab(label: 'Home', icon: Icon(Icons.home)),
-    LGBottomBarTab(label: 'Search', icon: Icon(Icons.search)),
-    LGBottomBarTab(label: 'Profile', icon: Icon(Icons.person)),
-  ],
-  selectedIndex: index,
-  onTabSelected: (index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  },
-  isSearch: true,
-  glassSettings: const LiquidGlassSettings(
-    thickness: 40,
-    blur: 15,
-  ),
-)
-```
-
-**Use Cases:**
-- Main app navigation
-- Tab-based interfaces
-- Apps with search functionality
-- Multi-section applications
 
 ### LGSwitch
 
