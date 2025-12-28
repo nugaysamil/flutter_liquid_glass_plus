@@ -14,9 +14,13 @@ A beautiful Flutter package for creating stunning liquid glass morphism UI effec
 ## Preview
 
 https://github.com/user-attachments/assets/e1a18346-d5be-4d86-8b94-80f0fc3d1517
+
 https://github.com/user-attachments/assets/620626d8-dc71-4aff-95c8-a20b9c8ba286
+
 https://github.com/user-attachments/assets/eb01e0cd-b043-499e-8f0c-cb033e384324
+
 https://github.com/user-attachments/assets/10ce1d27-dffc-4604-8d0e-b22928a4c641
+
 https://github.com/user-attachments/assets/80988221-7820-404f-9647-a1fd65b904ed
 
 ## Installation
